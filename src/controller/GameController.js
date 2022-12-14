@@ -1,3 +1,5 @@
-class GameController {}
+class GameController {
+  gameStart() {}
+}
 
 module.exports = GameController;
