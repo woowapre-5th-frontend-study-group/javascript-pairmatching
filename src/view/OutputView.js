@@ -12,8 +12,34 @@ const OutputView = {
     MissionUtils.Console.print("  - 레벨5: ");
     MissionUtils.Console.print("############################################");
   },
-  emptyLine() {
+
+  printEmptyLine() {
     MissionUtils.Console.print("");
+  },
+
+  printFairs(fairs) {
+    const length = fairs.length;
+
+    MissionUtils.Console.print("페어 매칭 결과입니다.");
+    if (length % 2 === 0) {
+      return this.whenOdd(fairs, length);
+    }
+    if (length % 2 === 1) {
+      return this.whenEven(fairs, length);
+    }
+  },
+  whenOdd(fairs, length) {
+    for (let i = 0; i < length; i += 2) {
+      MissionUtils.Console.print(`${fairs[i]} : ${fairs[i + 1]}`);
+    }
+  },
+  whenEven(fairs, length) {
+    for (let i = 0; i < length - 3; i += 2) {
+      MissionUtils.Console.print(`${fairs[i]} : ${fairs[i + 1]}`);
+    }
+    MissionUtils.Console.print(
+      `${fairs[length - 3]} : ${fairs[length - 2]} : ${fairs[length - 1]}`
+    );
   },
 };
 
