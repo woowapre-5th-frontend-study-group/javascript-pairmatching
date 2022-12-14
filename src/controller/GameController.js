@@ -1,17 +1,17 @@
 const InputView = require("../view/InputView");
 const OutputView = require("../view/OutputView");
 
-const FairMatching = require("../model/FairMatching");
+const FairManager = require("../model/FairManager");
 
 class GameController {
-  #fairMatching = new FairMatching();
+  #fairMatching = new FairManager();
 
   gameStart() {
     InputView.chooseFunction(this.moveToFunction.bind(this));
   }
 
   moveToFunction(number) {
-    OutputView.printEmptyLine();
+    OutputView.printprintEmptyLine();
 
     if (number === "1") {
       this.printProcessAndMission(this.startFairMatching.bind(this));
@@ -26,7 +26,7 @@ class GameController {
   startFairMatching(value) {
     const fairs = this.#fairMatching.validate(value);
 
-    OutputView.printEmptyLine();
+    OutputView.printprintEmptyLine();
     OutputView.printFairs(fairs);
   }
 }

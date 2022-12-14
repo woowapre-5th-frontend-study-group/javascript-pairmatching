@@ -2,7 +2,7 @@ const Data = require("../data/Data");
 const Crew = require("../constant/Crew");
 const FairMaker = require("../util/FairMaker");
 
-class FairMatching {
+class FairManager {
   constructor() {
     this.data = Data;
   }
@@ -14,7 +14,7 @@ class FairMatching {
       throw new Error("[ERROR] 과정, 레벨, 미션 각각 하나씩만 입력가능합니다.");
     }
 
-    this.makeFair(splitedValue);
+    return this.makeFair(splitedValue);
   }
 
   makeFair(splitedValue) {
@@ -30,4 +30,4 @@ class FairMatching {
   }
 }
 
-module.exports = FairMatching;
+module.exports = FairManager;
