@@ -7,6 +7,10 @@ class GameController {
   #fairMatching = new FairManager();
 
   gameStart() {
+    this.chooseFunction();
+  }
+
+  chooseFunction() {
     InputView.chooseFunction(this.moveToFunction.bind(this));
   }
 
@@ -14,7 +18,7 @@ class GameController {
     OutputView.printprintEmptyLine();
 
     if (number === "1") {
-      this.printProcessAndMission(this.startFairMatching.bind(this));
+      return this.printProcessAndMission(this.startFairMatching.bind(this));
     }
   }
 
@@ -28,10 +32,13 @@ class GameController {
 
     OutputView.printprintEmptyLine();
     OutputView.printFairs(fairs);
+
+    OutputView.printprintEmptyLine();
+    this.chooseFunction();
   }
 }
 
-const game = new GameController();
-game.gameStart();
+const gameController = new GameController();
+gameController.gameStart();
 
 module.exports = GameController;
