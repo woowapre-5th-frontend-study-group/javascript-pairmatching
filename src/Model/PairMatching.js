@@ -55,12 +55,10 @@ class PairMatching {
   isAvailableMatch() {
     let isAvailable = true;
     this.#matches.forEach((match) => {
-      if (this.#currentOptions.toString() == match.getOptions()) {
-        console.log("?", match.getMatchResult());
+      if (match.isSameOptions(this.#currentOptions)) {
         isAvailable = false;
       }
     });
-
     return isAvailable;
   }
 
@@ -81,7 +79,7 @@ class PairMatching {
 
   reMatch() {
     this.#matches.forEach((match, index) => {
-      if (this.#currentOptions.toString() == match.getOptions()) {
+      if (match.isSameOptions(this.#currentOptions)) {
         const newMatches = this.#matches.splice(index, 1);
         this.setMatches([...newMatches]);
       }
@@ -91,7 +89,7 @@ class PairMatching {
   search() {
     let matchResult;
     this.#matches.forEach((match) => {
-      if (this.#currentOptions.toString() == match.getOptions()) {
+      if (match.isSameOptions(this.#currentOptions)) {
         matchResult = match.getMatchResult();
       }
     });

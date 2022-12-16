@@ -30,12 +30,9 @@ class Match {
       throw new Error("[ERROR] 올바른 미션명을 입력해주세요.");
   }
 
-  // checkPairInfo(pairInfo) {
-  //   const pairInfoArray = pairInfo.split(", ");
-  //   if (this.#options == pairInfoArray) {
-  //     return true;
-  //   }
-  // }
+  isSameOptions(options) {
+    return options.toString() == this.#options;
+  }
 }
 
 module.exports = Match;
