@@ -1,10 +1,13 @@
+const CrewInfo = require("./CrewInfo");
+
 class Match {
-  #matchResult;
   #options;
+  #matchResult;
 
   constructor(options, matchResult) {
-    this.#matchResult = matchResult;
+    this.validateOptions(options);
     this.#options = options;
+    this.#matchResult = matchResult;
   }
 
   getOptions() {
@@ -13,6 +16,18 @@ class Match {
 
   getMatchResult() {
     return this.#matchResult;
+  }
+
+  validateOptions(options) {
+    if (!CrewInfo.course.includes(options[0]))
+      throw new Error("[ERROR] 올바른 코스명을 입력해주세요.");
+
+    if (!CrewInfo.level.includes(options[1]))
+      throw new Error("[ERROR] 올바른 레벨을 입력해주세요.");
+
+    const level = options[1].split("벨")[1];
+    if (!CrewInfo.mission[level - 1].includes(options[2]))
+      throw new Error("[ERROR] 올바른 미션명을 입력해주세요.");
   }
 
   // checkPairInfo(pairInfo) {

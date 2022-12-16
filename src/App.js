@@ -43,7 +43,7 @@ class App {
   }
 
   #readTaskCallback = (task) => {
-    this.#pairMatching.setTask(TASK_NUMBER[task]);
+    this.#pairMatching.setTask(task);
     this.#controller();
   };
 

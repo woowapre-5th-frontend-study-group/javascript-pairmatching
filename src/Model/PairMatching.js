@@ -1,6 +1,7 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const { BACK_CREW, FRONT_CREW } = require("../constant/value");
 const Match = require("./Match");
+const { TASK_NUMBER } = require("../constant/value");
 
 class PairMatching {
   #task;
@@ -11,6 +12,11 @@ class PairMatching {
     this.#task = "";
     this.#matches = [];
     this.#currentOptions = [];
+  }
+
+  validateTask(task) {
+    if (!(task == 1 || task == 2 || task == 3 || task == "Q"))
+      throw new Error("[ERROR] 올바른 기능을 선택하세요.");
   }
 
   getTask() {
@@ -26,7 +32,8 @@ class PairMatching {
   }
 
   setTask(newTask) {
-    this.#task = newTask;
+    this.validateTask(newTask);
+    this.#task = TASK_NUMBER[newTask];
   }
 
   setMatches(newMatches) {
