@@ -47,11 +47,9 @@ class PairMatching {
 
   isAvailableMatch() {
     let isAvailable = true;
-    console.log(2);
     this.#matches.forEach((match) => {
-      console.log("2", match.getMatchResult());
-      console.log("1", match.getOptions());
       if (this.#currentOptions.toString() == match.getOptions()) {
+        console.log("?", match.getMatchResult());
         isAvailable = false;
       }
     });
@@ -69,30 +67,29 @@ class PairMatching {
     });
 
     const matchResult = MissionUtils.Random.shuffle(numberArray);
-
-    console.log(matchResult);
-    const match = new Match([...this.#currentOptions], matchResult);
-
+    const match = new Match(this.#currentOptions, [...matchResult]);
     this.#matches.push(match);
-    console.log("?", match.getMatchResult());
     return matchResult;
   }
 
-  // reMatch() {
-  //   this.#pairList.forEach((pair, index) => {
-  //     if (this.#currentOptions == pair.getOptions()) {
-  //       this.#pairList = this.#pairList.splice(index, 1);
-  //     }
-  //   });
-  // }
+  reMatch() {
+    this.#matches.forEach((match, index) => {
+      if (this.#currentOptions.toString() == match.getOptions()) {
+        const newMatches = this.#matches.splice(index, 1);
+        this.setMatches([...newMatches]);
+      }
+    });
+  }
 
-  // searchMatchResult() {
-  //   this.#pairList.forEach((pair, index) => {
-  //     if (this.#currentOptions == pair.getOptions()) {
-  //       return pair.getMatchInfo();
-  //     }
-  //   });
-  // }
+  search() {
+    let matchResult;
+    this.#matches.forEach((match) => {
+      if (this.#currentOptions.toString() == match.getOptions()) {
+        matchResult = match.getMatchResult();
+      }
+    });
+    return matchResult;
+  }
 }
 
 module.exports = PairMatching;

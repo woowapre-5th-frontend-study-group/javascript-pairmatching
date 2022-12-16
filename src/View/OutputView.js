@@ -19,6 +19,7 @@ const OutputView = {
   },
 
   printMatchResult(matchResult) {
+    console.log("1", matchResult);
     MissionUtils.Console.print("\n페어 매칭 결과입니다.");
     const pairs = division(matchResult, 2);
 

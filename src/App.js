@@ -60,12 +60,10 @@ class App {
   };
 
   #readOptionsForSearchCallback = (options) => {
-    this.#pairMatching.setCurrentPairInfo(options);
+    this.#pairMatching.setCurrentOptions(options);
 
-    console.log("**" + this.#pairMatching.getPairList().length);
-    console.log(JSON.stringify(this.#pairMatching.getPairList()[0]));
-    const t = this.#pairMatching.searchMatchResult();
-    OutputView.printPairMatchResult(t);
+    const matchResult = this.#pairMatching.search();
+    OutputView.printMatchResult(matchResult);
     InputView.readTask(this.#readTaskCallback);
   };
 
