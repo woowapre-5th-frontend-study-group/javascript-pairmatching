@@ -19,12 +19,12 @@ const OutputView = {
     );
   },
 
-  printMatchResult(pairs) {
+  printMatchResult(pairs, targetCrew) {
     MissionUtils.Console.print("\n페어 매칭 결과입니다.");
 
     pairs.forEach((pair) => {
       MissionUtils.Console.print(
-        BACK_CREW[pair[0]] + " : " + BACK_CREW[pair[1]]
+        targetCrew[pair[0]] + " : " + targetCrew[pair[1]]
       );
     });
     MissionUtils.Console.print("");

@@ -54,7 +54,8 @@ class App {
     if (this.#pairMatching.isAvailableMatch()) {
       const matchResult = this.#pairMatching.match();
       const pairs = this.#pairMatching.pairing(matchResult);
-      OutputView.printMatchResult(pairs);
+      const targetCrew = this.#pairMatching.getTargetCrew();
+      OutputView.printMatchResult(pairs, targetCrew);
       InputView.readTask(this.#readTaskCallback);
     } else {
       InputView.readReMatchOption(this.#readReMatchOptionCallback);
@@ -71,7 +72,8 @@ class App {
       this.#controller();
     } else {
       const pairs = this.#pairMatching.pairing(matchResult);
-      OutputView.printMatchResult(pairs);
+      const targetCrew = this.#pairMatching.getTargetCrew();
+      OutputView.printMatchResult(pairs, targetCrew);
       InputView.readTask(this.#readTaskCallback);
     }
   };
@@ -81,7 +83,8 @@ class App {
       this.#pairMatching.reMatch();
       const matchResult = this.#pairMatching.match();
       const pairs = this.#pairMatching.pairing(matchResult);
-      OutputView.printMatchResult(pairs);
+      const targetCrew = this.#pairMatching.getTargetCrew();
+      OutputView.printMatchResult(pairs, targetCrew);
       InputView.readTask(this.#readTaskCallback);
     }
     if (option == "아니오") {

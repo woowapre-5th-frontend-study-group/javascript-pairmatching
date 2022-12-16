@@ -1,8 +1,7 @@
 const MissionUtils = require("@woowacourse/mission-utils");
-const { BACK_CREW, FRONT_CREW } = require("../constant/value");
-const Match = require("./Match");
-const { TASK_NUMBER } = require("../constant/value");
+const { BACK_CREW, FRONT_CREW, TASK_NUMBER } = require("../constant/value");
 const { division } = require("../utils/utils");
+const Match = require("./Match");
 
 class PairMatching {
   #task;
@@ -64,8 +63,7 @@ class PairMatching {
   }
 
   match() {
-    const targetCrew =
-      this.#currentOptions[0] == "백엔드" ? BACK_CREW : FRONT_CREW;
+    const targetCrew = this.getTargetCrew();
 
     const numberArray = [];
     targetCrew.forEach((crew, index) => {
@@ -99,6 +97,10 @@ class PairMatching {
       }
     });
     return matchResult;
+  }
+
+  getTargetCrew() {
+    return this.#currentOptions[0] == "백엔드" ? BACK_CREW : FRONT_CREW;
   }
 }
 
