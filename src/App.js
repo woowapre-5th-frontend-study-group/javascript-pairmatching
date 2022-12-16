@@ -1,4 +1,4 @@
-const { MissionUtils } = require("@woowacourse/mission-utils");
+const MissionUtils = require("@woowacourse/mission-utils");
 const InputView = require("./View/InputView");
 const OutputView = require("./View/OutputView");
 const PairMatching = require("./Model/PairMatching");
