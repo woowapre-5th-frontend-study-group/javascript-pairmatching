@@ -65,11 +65,9 @@ class App {
     const matchResult = this.#pairMatching.search();
 
     if (matchResult.length == 0) {
-      OutputView.printSearchFail();
-      this.#controller();
-    } else {
-      this.#result(matchResult);
+      throw new Error("[ERROR] 매칭 이력이 없습니다.");
     }
+    this.#result(matchResult);
   };
 
   #readReMatchOptionCallback = (option) => {

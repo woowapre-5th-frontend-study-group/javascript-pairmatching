@@ -52,12 +52,28 @@ class PairMatching {
       numberArray.push(index);
     });
 
-    const matchResult = MissionUtils.Random.shuffle(numberArray);
+    const matchResult = this.uniqueMatch(numberArray);
 
     const match = new Match(this.#currentOptions, [...matchResult]);
     this.#matches.push(match);
 
     return matchResult;
+  }
+
+  uniqueMatch(numberArray) {
+    let matchResult = MissionUtils.Random.shuffle(numberArray);
+
+    if (this.checkHasSamePairs(matchResult)) {
+      for (let i = 0; i < 3; i++) {
+        matchResult = MissionUtils.Random.shuffle(numberArray);
+        if (!this.checkHasSamePairs(matchResult)) break;
+      }
+    }
+
+    if (this.checkHasSamePairs(matchResult))
+      throw new Error("[ERROR] 매칭을 할 수 있는 경우의 수가 없습니다.");
+
+    return [...matchResult];
   }
 
   search() {
@@ -88,13 +104,27 @@ class PairMatching {
     return isAvailable;
   }
 
-  hasSamePairs(matchResult) {
+  checkHasSamePairs(matchResult) {
+    let hasSamePairs = false;
+    const newPairs = this.pairing([...matchResult]);
+
     this.#matches.forEach((match) => {
       if (match.isSameLevel(this.#currentOptions)) {
-        existingPairs = this.pairing(match.getMatchResult());
-        newPairs = this.pairing(matchResult);
+        const existingPairs = this.pairing([...match.getMatchResult()]);
+        existingPairs.forEach((existingPair) => {
+          newPairs.forEach((newPair) => {
+            let intersection = 0;
+            existingPair.forEach((crew) => {
+              if (newPair.includes(crew)) intersection++;
+            });
+            if (intersection >= 2) {
+              hasSamePairs = true;
+            }
+          });
+        });
       }
     });
+    return hasSamePairs;
   }
 
   pairing(matchResult) {

@@ -35,7 +35,7 @@ class Match {
   }
 
   isSameLevel(options) {
-    return this.#options[0] == options[0] && this.#options == options[1];
+    return this.#options[0] == options[0] && this.#options[1] == options[1];
   }
 }
 

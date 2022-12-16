@@ -1,6 +1,5 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const CrewInfo = require("../Model/CrewInfo");
-const { BACK_CREW, FRONT_CREW } = require("../constant/value");
 
 const OutputView = {
   printCrewInfo() {
@@ -32,10 +31,6 @@ const OutputView = {
 
   printInitComment() {
     MissionUtils.Console.print("\n초기화 되었습니다.\n");
-  },
-
-  printSearchFail() {
-    MissionUtils.Console.print("\n매칭 이력이 없습니다. 다시 선택해주세요.");
   },
 };
 
