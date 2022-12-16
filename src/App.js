@@ -1,8 +1,7 @@
+const { MissionUtils } = require("@woowacourse/mission-utils");
 const InputView = require("./View/InputView");
 const OutputView = require("./View/OutputView");
 const PairMatching = require("./Model/PairMatching");
-const { TASK_NUMBER } = require("./constant/value");
-const { MissionUtils } = require("@woowacourse/mission-utils");
 
 class App {
   #pairMatching;
@@ -35,6 +34,7 @@ class App {
 
   #init() {
     this.#pairMatching.init();
+
     OutputView.printInitComment();
     InputView.readTask(this.#readTaskCallback);
   }
@@ -53,10 +53,7 @@ class App {
 
     if (this.#pairMatching.isAvailableMatch()) {
       const matchResult = this.#pairMatching.match();
-      const pairs = this.#pairMatching.pairing(matchResult);
-      const targetCrew = this.#pairMatching.getTargetCrew();
-      OutputView.printMatchResult(pairs, targetCrew);
-      InputView.readTask(this.#readTaskCallback);
+      this.#result(matchResult);
     } else {
       InputView.readReMatchOption(this.#readReMatchOptionCallback);
     }
@@ -71,10 +68,7 @@ class App {
       OutputView.printSearchFail();
       this.#controller();
     } else {
-      const pairs = this.#pairMatching.pairing(matchResult);
-      const targetCrew = this.#pairMatching.getTargetCrew();
-      OutputView.printMatchResult(pairs, targetCrew);
-      InputView.readTask(this.#readTaskCallback);
+      this.#result(matchResult);
     }
   };
 
@@ -82,16 +76,22 @@ class App {
     if (option == "네") {
       this.#pairMatching.reMatch();
       const matchResult = this.#pairMatching.match();
-      const pairs = this.#pairMatching.pairing(matchResult);
-      const targetCrew = this.#pairMatching.getTargetCrew();
-      OutputView.printMatchResult(pairs, targetCrew);
-      InputView.readTask(this.#readTaskCallback);
+      this.#result(matchResult);
     }
+
     if (option == "아니오") {
       MissionUtils.Console.print("");
       InputView.readOptions(this.#readOptionsForMatchCallback);
     }
   };
+
+  #result(matchResult) {
+    const pairs = this.#pairMatching.pairing(matchResult);
+    const targetCrew = this.#pairMatching.getTargetCrew();
+
+    OutputView.printMatchResult(pairs, targetCrew);
+    InputView.readTask(this.#readTaskCallback);
+  }
 }
 
 module.exports = App;

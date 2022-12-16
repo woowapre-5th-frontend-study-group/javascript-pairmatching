@@ -33,6 +33,10 @@ class Match {
   isSameOptions(options) {
     return options.toString() == this.#options;
   }
+
+  isSameLevel(options) {
+    return this.#options[0] == options[0] && this.#options == options[1];
+  }
 }
 
 module.exports = Match;

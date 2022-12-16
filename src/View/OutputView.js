@@ -23,9 +23,9 @@ const OutputView = {
     MissionUtils.Console.print("\n페어 매칭 결과입니다.");
 
     pairs.forEach((pair) => {
-      MissionUtils.Console.print(
-        targetCrew[pair[0]] + " : " + targetCrew[pair[1]]
-      );
+      const name = pair.map((crew) => targetCrew[crew]);
+
+      MissionUtils.Console.print(name.join(" : "));
     });
     MissionUtils.Console.print("");
   },
