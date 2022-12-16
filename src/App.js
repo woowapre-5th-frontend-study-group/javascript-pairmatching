@@ -53,7 +53,8 @@ class App {
 
     if (this.#pairMatching.isAvailableMatch()) {
       const matchResult = this.#pairMatching.match();
-      OutputView.printMatchResult(matchResult);
+      const pairs = this.#pairMatching.pairing(matchResult);
+      OutputView.printMatchResult(pairs);
       InputView.readTask(this.#readTaskCallback);
     } else {
       InputView.readReMatchOption(this.#readReMatchOptionCallback);
@@ -69,7 +70,8 @@ class App {
       OutputView.printSearchFail();
       this.#controller();
     } else {
-      OutputView.printMatchResult(matchResult);
+      const pairs = this.#pairMatching.pairing(matchResult);
+      OutputView.printMatchResult(pairs);
       InputView.readTask(this.#readTaskCallback);
     }
   };
@@ -78,7 +80,8 @@ class App {
     if (option == "네") {
       this.#pairMatching.reMatch();
       const matchResult = this.#pairMatching.match();
-      OutputView.printMatchResult(matchResult);
+      const pairs = this.#pairMatching.pairing(matchResult);
+      OutputView.printMatchResult(pairs);
       InputView.readTask(this.#readTaskCallback);
     }
     if (option == "아니오") {

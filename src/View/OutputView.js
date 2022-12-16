@@ -1,7 +1,6 @@
 const MissionUtils = require("@woowacourse/mission-utils");
 const CrewInfo = require("../Model/CrewInfo");
 const { BACK_CREW, FRONT_CREW } = require("../constant/value");
-const { division } = require("../utils/utils");
 
 const OutputView = {
   printCrewInfo() {
@@ -20,10 +19,8 @@ const OutputView = {
     );
   },
 
-  printMatchResult(matchResult) {
-    console.log("1", matchResult);
+  printMatchResult(pairs) {
     MissionUtils.Console.print("\n페어 매칭 결과입니다.");
-    const pairs = division(matchResult, 2);
 
     pairs.forEach((pair) => {
       MissionUtils.Console.print(

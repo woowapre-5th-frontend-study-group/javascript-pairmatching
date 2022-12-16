@@ -2,6 +2,7 @@ const MissionUtils = require("@woowacourse/mission-utils");
 const { BACK_CREW, FRONT_CREW } = require("../constant/value");
 const Match = require("./Match");
 const { TASK_NUMBER } = require("../constant/value");
+const { division } = require("../utils/utils");
 
 class PairMatching {
   #task;
@@ -75,6 +76,10 @@ class PairMatching {
     const match = new Match(this.#currentOptions, [...matchResult]);
     this.#matches.push(match);
     return matchResult;
+  }
+
+  pairing(matchResult) {
+    return division(matchResult, 2);
   }
 
   reMatch() {
