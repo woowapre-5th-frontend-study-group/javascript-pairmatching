@@ -34,6 +34,10 @@ const OutputView = {
   printInitComment() {
     MissionUtils.Console.print("초기화 되었습니다.\n");
   },
+
+  printSearchFail() {
+    MissionUtils.Console.print("\n매칭 이력이 없습니다. 다시 선택해주세요.");
+  },
 };
 
 module.exports = OutputView;

@@ -63,8 +63,14 @@ class App {
     this.#pairMatching.setCurrentOptions(options);
 
     const matchResult = this.#pairMatching.search();
-    OutputView.printMatchResult(matchResult);
-    InputView.readTask(this.#readTaskCallback);
+
+    if (matchResult.length == 0) {
+      OutputView.printSearchFail();
+      this.#controller();
+    } else {
+      OutputView.printMatchResult(matchResult);
+      InputView.readTask(this.#readTaskCallback);
+    }
   };
 
   #readReMatchOptionCallback = (option) => {

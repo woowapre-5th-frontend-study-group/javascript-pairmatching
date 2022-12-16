@@ -87,7 +87,7 @@ class PairMatching {
   }
 
   search() {
-    let matchResult;
+    let matchResult = [];
     this.#matches.forEach((match) => {
       if (match.isSameOptions(this.#currentOptions)) {
         matchResult = match.getMatchResult();
