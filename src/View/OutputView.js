@@ -34,7 +34,7 @@ const OutputView = {
   },
 
   printInitComment() {
-    MissionUtils.Console.print("초기화 되었습니다.\n");
+    MissionUtils.Console.print("\n초기화 되었습니다.\n");
   },
 
   printSearchFail() {

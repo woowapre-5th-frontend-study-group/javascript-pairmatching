@@ -35,6 +35,7 @@ class App {
 
   #init() {
     this.#pairMatching.init();
+    OutputView.printInitComment();
     InputView.readTask(this.#readTaskCallback);
   }
 
